@@ -39,7 +39,12 @@
 
   <script src="https://vjs.zencdn.net/8.0.4/video.min.js"></script>
   <script>
-    document.getElementById("player").width = window.innerWidth;
+    const width = Math.min(
+      Math.floor((16 / 9) * window.innerHeight),
+      window.innerWidth
+    );
+
+    document.getElementById("player").width = width;
     document.getElementById("source").src = location.hash.slice(1);
   </script>
 </body>
