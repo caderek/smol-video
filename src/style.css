@@ -12,7 +12,6 @@ body {
 body {
   display: grid;
   place-content: center;
-  background-color: black;
   overflow: hidden;
   background-color: rgb(19, 17, 36);
   color: #ddd;
@@ -106,7 +105,7 @@ fieldset input {
 fieldset button {
   cursor: pointer;
   background-color: #2395e0;
-  color: black;
+  color: rgb(19, 17, 36);
   width: 5rem;
 }
 
