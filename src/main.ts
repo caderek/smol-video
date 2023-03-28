@@ -29,6 +29,12 @@ const registerKeys = () => {
       case "ArrowLeft":
         player.currentTime(player.currentTime() - 10);
         return;
+      case "ArrowUp":
+        player.volume(Math.min(player.volume() + 0.1), 1);
+        return;
+      case "ArrowDown":
+        player.volume(Math.max(player.volume() - 0.1, 0));
+        return;
       case " ":
         player.paused() ? player.play() : player.pause();
         return;
