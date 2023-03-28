@@ -16,6 +16,26 @@ const player = videojs($player, {
   preload: "auto",
 });
 
+const registerKeys = () => {
+  document.addEventListener("keydown", (e) => {
+    console.log(e.key);
+    switch (e.key) {
+      case "m":
+        player.muted(!player.muted());
+        return;
+      case "ArrowRight":
+        player.currentTime(player.currentTime() + 10);
+        return;
+      case "ArrowLeft":
+        player.currentTime(player.currentTime() - 10);
+        return;
+      case " ":
+        player.paused() ? player.play() : player.pause();
+        return;
+    }
+  });
+};
+
 if (location.hash) {
   player.src({
     type: "application/x-mpegURL",
@@ -26,17 +46,7 @@ if (location.hash) {
   $back.classList.toggle("hidden");
   $title.classList.toggle("dim");
 
-  document.addEventListener("keydown", (e) => {
-    console.log(e.key);
-    switch (e.key) {
-      case "m":
-        player.muted(!player.muted());
-        return;
-      case " ":
-        player.paused() ? player.play() : player.pause();
-        return;
-    }
-  });
+  registerKeys();
 } else {
   $formBox.classList.toggle("hidden");
 
@@ -60,6 +70,8 @@ if (location.hash) {
       $playerBox.classList.toggle("hidden");
       $back.classList.toggle("hidden");
       $title.classList.toggle("dim");
+
+      registerKeys();
     }
   });
 }
