@@ -110,6 +110,10 @@ fieldset button {
   width: 5rem;
 }
 
+fieldset button:hover {
+  background-color: #30a4f1;
+}
+
 fieldset p {
   margin-bottom: 1rem;
   text-align: center;
