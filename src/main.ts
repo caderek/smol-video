@@ -18,7 +18,6 @@ const player = videojs($player, {
 
 const registerKeys = () => {
   document.addEventListener("keydown", (e) => {
-    console.log(e.key);
     switch (e.key) {
       case "m":
         player.muted(!player.muted());
@@ -30,7 +29,7 @@ const registerKeys = () => {
         player.currentTime(player.currentTime() - 10);
         return;
       case "ArrowUp":
-        player.volume(Math.min(player.volume() + 0.1), 1);
+        player.volume(Math.min(player.volume() + 0.1, 1));
         return;
       case "ArrowDown":
         player.volume(Math.max(player.volume() - 0.1, 0));
