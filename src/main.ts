@@ -25,6 +25,18 @@ if (location.hash) {
   $playerBox.classList.toggle("hidden");
   $back.classList.toggle("hidden");
   $title.classList.toggle("dim");
+
+  document.addEventListener("keydown", (e) => {
+    console.log(e.key);
+    switch (e.key) {
+      case "m":
+        player.muted(!player.muted());
+        return;
+      case " ":
+        player.paused() ? player.play() : player.pause();
+        return;
+    }
+  });
 } else {
   $formBox.classList.toggle("hidden");
 
