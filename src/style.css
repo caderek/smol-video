@@ -85,6 +85,10 @@ h1 a:hover {
   opacity: 1;
 }
 
+#form-box {
+  width: min(calc(100vw - 2rem), 40rem);
+}
+
 fieldset input,
 fieldset button {
   padding: 0.5rem;
@@ -95,7 +99,7 @@ fieldset button {
 }
 
 fieldset input {
-  width: min(70vh, 30rem);
+  width: calc(100% - 5.5rem);
   margin-right: 0.2rem;
 }
 
@@ -114,7 +118,7 @@ fieldset p {
   margin-top: 2rem;
   font-size: 0.875rem;
   color: #639ec5;
-  width: calc(min(70vh, 30rem) + 0.2rem + 5rem);
+  width: 100%;
   line-height: 1.2rem;
   text-align: center;
 }
