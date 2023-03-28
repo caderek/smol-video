@@ -50,7 +50,7 @@ if (location.hash) {
 } else {
   $formBox.classList.toggle("hidden");
 
-  $load.addEventListener("click", (e) => {
+  const loadFromForm = (e: Event) => {
     e.preventDefault();
 
     const source = $source.value.trim();
@@ -73,5 +73,8 @@ if (location.hash) {
 
       registerKeys();
     }
-  });
+  };
+
+  $load.addEventListener("click", loadFromForm);
+  $source.addEventListener("change", loadFromForm);
 }
