@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://vjs.zencdn.net/8.0.4/video-js.css" rel="stylesheet" />
+    <style>
+      html,
+      body {
+        height: 100%;
+        padding: 0;
+        margin: 0;
+      }
+
+      body {
+        background-color: black;
+        overflow: hidden;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      fieldset {
+        border: none;
+      }
+
+      #player-box {
+        background-color: aqua;
+        width: 100vw;
+        height: 100vh;
+      }
+    </style>
+    <title>TinyPlayer</title>
+  </head>
+  <body></body>
+</html>
+
+<body>
+  <header>
+    <h1><a href="/">SmolVid</a></h1>
+  </header>
+  <section id="form-box" class="hidden">
+    <fieldset>
+      <input id="source" type="text" name="Source" id="source" />
+      <button id="load">LOAD</button>
+    </fieldset>
+  </section>
+  <section id="player-box" class="hidden">
+    <video id="player" class="video-js"></video>
+  </section>
+
+  <script src="https://vjs.zencdn.net/8.0.4/video.min.js"></script>
+  <script>
+    const $playerBox = document.getElementById("player-box");
+    const $formBox = document.getElementById("form-box");
+    const $player = document.getElementById("player");
+    const $load = document.getElementById("load");
+    const $source = document.getElementById("source");
+
+    const width = Math.min(
+      Math.floor((16 / 9) * window.innerHeight),
+      window.innerWidth
+    );
+
+    const player = videojs($player, {
+      fill: true,
+      controls: true,
+      preload: "auto",
+    });
+
+    if (location.hash) {
+      player.src({
+        type: "application/x-mpegURL",
+        src: atob(location.hash.slice(1)),
+      });
+
+      setTimeout(() => {
+        console.log({ w: player.videoWidth(), h: player.videoHeight() });
+      }, 3000);
+
+      $playerBox.classList.toggle("hidden");
+    } else {
+      $formBox.classList.toggle("hidden");
+
+      $load.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        const source = $source.value.trim();
+
+        if (source) {
+          $source.value = "";
+
+          player.src({
+            type: "application/x-mpegURL",
+            src: source,
+          });
+
+          player.autoplay();
+
+          location.hash = btoa(source);
+
+          $formBox.classList.toggle("hidden");
+          $playerBox.classList.toggle("hidden");
+        }
+      });
+    }
+
+    /*
+
+    https://q1.livemodo.click/ddDh_ifc7IWqa5Vnrs-maA/1679990152/34362e3230342e37322e323239/ff91/playlist.m3u8
+
+    */
+  </script>
+</body>
