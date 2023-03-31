@@ -16,6 +16,22 @@ const player = videojs($player, {
   preload: "auto",
 });
 
+const storage = {
+  save() {
+    localStorage.setItem(location.hash, String(player.currentTime()));
+  },
+
+  read() {
+    const time = localStorage.getItem(location.hash);
+    return time ? Number(time) : 0;
+  },
+};
+
+const updateStorage = (ms: number = 5000) => {
+  storage.save();
+  setTimeout(updateStorage, ms);
+};
+
 const registerKeys = () => {
   document.addEventListener("keydown", (e) => {
     switch (e.key) {
@@ -51,7 +67,9 @@ if (location.hash) {
   $back.classList.toggle("hidden");
   $title.classList.toggle("dim");
 
+  player.currentTime(storage.read());
   registerKeys();
+  updateStorage();
 } else {
   $formBox.classList.toggle("hidden");
 
@@ -77,6 +95,7 @@ if (location.hash) {
       $title.classList.toggle("dim");
 
       registerKeys();
+      updateStorage();
     }
   };
 
