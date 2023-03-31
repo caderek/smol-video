@@ -18,7 +18,7 @@ const player = videojs($player, {
 
 const storage = {
   save() {
-    localStorage.setItem(location.hash, String(player.currentTime()));
+    localStorage.setItem(location.hash, player.currentTime().toFixed(0));
   },
 
   read() {
