@@ -12,11 +12,15 @@
       <a href="/" id="back" class="back hidden" title="back"></a>
     </header>
 
-    <section id="form-box" class="hidden">
+    <section id="form-box">
       <fieldset>
         <label>
           <p>Source URL:</p>
-          <input id="source" type="text" name="Source" id="source" />
+          <input id="source" type="text" name="Source" autocomplete="off" />
+        </label>
+        <label>
+          <p>Title (optional):</p>
+          <input id="name" type="text" name="Source" autocomplete="off" />
         </label>
         <button id="load">LOAD</button>
       </fieldset>

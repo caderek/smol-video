@@ -14,7 +14,7 @@ body {
   place-content: center;
   overflow: hidden;
   background-color: rgb(19, 17, 36);
-  color: #ddd;
+  color: #9ec8e4;
   font-family: system-ui;
   font-size: 1rem;
 }
@@ -89,25 +89,40 @@ h1 a:hover {
   width: min(calc(100vw - 2rem), 40rem);
 }
 
+fieldset {
+  text-align: center;
+}
+
 fieldset input,
 fieldset button {
-  padding: 0.5rem;
   font-family: system-ui;
   font-size: 1rem;
-  border: none;
   border-radius: 0.25rem;
 }
 
 fieldset input {
-  width: calc(100% - 5.5rem);
+  padding: 0.5rem;
+  width: 100%;
   margin-right: 0.2rem;
+  margin-bottom: 2rem;
+  background-color: rgb(13, 13, 26);
+  border: solid 1px rgb(46, 42, 82);
+  color: rgb(158, 153, 202);
+  outline: none;
+}
+
+fieldset input:focus {
+  border-color: #2395e0;
 }
 
 fieldset button {
+  border: none;
+  padding: 0.75rem;
   cursor: pointer;
   background-color: #2395e0;
   color: rgb(19, 17, 36);
-  width: 5rem;
+  font-weight: bold;
+  width: 10rem;
 }
 
 fieldset button:hover {

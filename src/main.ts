@@ -1,14 +1,21 @@
 import "./style.css";
 import "../node_modules/video.js/dist/video-js.min.css";
 import videojs from "video.js";
+import HashStorage from "./hashStorage";
+import type { Data } from "./hashStorage";
 
 const $playerBox = document.getElementById("player-box") as HTMLDivElement;
 const $formBox = document.getElementById("form-box") as HTMLDivElement;
 const $player = document.getElementById("player") as HTMLVideoElement;
 const $load = document.getElementById("load") as HTMLButtonElement;
 const $source = document.getElementById("source") as HTMLInputElement;
+const $name = document.getElementById("name") as HTMLInputElement;
 const $title = document.getElementById("title") as HTMLAnchorElement;
 const $back = document.getElementById("back") as HTMLAnchorElement;
+
+const PAGE_TITLE = "SmolVid";
+
+const hashStorage = new HashStorage();
 
 const player = videojs($player, {
   fill: true,
@@ -59,48 +66,70 @@ const registerKeys = () => {
   });
 };
 
-if (location.hash) {
+const loadVideo = (
+  data: { url: string; title: string },
+  options: { autoplay: boolean; updateHash: boolean }
+) => {
+  if (data === null) {
+    return;
+  }
+
   player.src({
-    type: "application/x-mpegURL",
-    src: atob(location.hash.slice(1)),
+    src: data.url,
   });
 
-  $playerBox.classList.toggle("hidden");
-  $back.classList.toggle("hidden");
-  $title.classList.toggle("dim");
+  player.autoplay(options.autoplay);
+
+  if (options.updateHash) {
+    hashStorage.set(data.url, data.title);
+  }
+
+  if (data.title) {
+    document.title = `${data.title} - ${PAGE_TITLE}`;
+  }
+
+  $formBox.classList.add("hidden");
+  $playerBox.classList.remove("hidden");
+  $back.classList.remove("hidden");
+  $title.classList.add("dim");
 
   player.currentTime(storage.read());
   registerKeys();
   updateStorage();
-} else {
-  $formBox.classList.toggle("hidden");
+};
 
+const data = hashStorage.get();
+
+if (data) {
+  loadVideo(data, { autoplay: false, updateHash: false });
+} else {
   const loadFromForm = (e: Event) => {
     e.preventDefault();
 
     const source = $source.value.trim();
+    const name = $name.value.trim();
 
     if (source) {
-      $source.value = "";
-
-      player.src({
-        src: source,
-      });
-
-      player.autoplay(true);
-
-      location.hash = btoa(source);
-
-      $formBox.classList.toggle("hidden");
-      $playerBox.classList.toggle("hidden");
-      $back.classList.toggle("hidden");
-      $title.classList.toggle("dim");
-
-      registerKeys();
-      updateStorage();
+      loadVideo(
+        { url: source, title: name },
+        { autoplay: true, updateHash: true }
+      );
     }
   };
 
   $load.addEventListener("click", loadFromForm);
-  $source.addEventListener("change", loadFromForm);
+
+  [$source, $name].forEach(($el) => {
+    $el.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        loadFromForm(e);
+      }
+    });
+  });
+
+  hashStorage.onChange((data) => {
+    if (data !== null) {
+      loadVideo(data, { autoplay: false, updateHash: false });
+    }
+  });
 }
