@@ -5,7 +5,7 @@ const TITLE_LENGTH_SIZE = 1;
 const VERSION_SIZE = 1;
 const VERSION = 0;
 
-type Data = {
+export type Data = {
   title: string;
   url: string;
 } | null;
@@ -34,7 +34,7 @@ function decode(base64str: string): Data {
 
   const bytes = pako.inflateRaw(compressed);
 
-  const version = bytes[0]; // unused, but added for future changes in the format
+  // const version = bytes[0]; // unused, but added for future changes in the format
   const titleLength = bytes[1];
   const title = new TextDecoder().decode(
     bytes.slice(

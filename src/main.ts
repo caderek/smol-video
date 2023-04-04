@@ -2,7 +2,6 @@ import "./style.css";
 import "../node_modules/video.js/dist/video-js.min.css";
 import videojs from "video.js";
 import HashStorage from "./hashStorage";
-import type { Data } from "./hashStorage";
 
 const $playerBox = document.getElementById("player-box") as HTMLDivElement;
 const $formBox = document.getElementById("form-box") as HTMLDivElement;
