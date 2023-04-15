@@ -7,9 +7,12 @@
 html,
 body {
   height: 100%;
+  overflow: hidden;
 }
 
-body {
+#home-page,
+#player-page {
+  height: 100%;
   display: grid;
   place-content: center;
   overflow: hidden;
@@ -17,6 +20,11 @@ body {
   color: #9ec8e4;
   font-family: system-ui;
   font-size: 1rem;
+}
+
+#home-page.hidden,
+#player-page.hidden {
+  display: none;
 }
 
 fieldset {
@@ -218,6 +226,7 @@ fieldset p {
 
 .info-box h2 {
   color: #fff;
+  max-width: calc(100% - 3rem);
   font-family: system-ui;
   font-size: 1.5rem;
 }
