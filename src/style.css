@@ -229,3 +229,7 @@ fieldset p {
 .vjs-big-play-button {
   display: none !important;
 }
+
+#form-box p#error {
+  color: rgb(250, 92, 92);
+}

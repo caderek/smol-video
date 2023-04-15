@@ -7,44 +7,51 @@
     <title>SmolVid</title>
   </head>
   <body>
-    <header id="header">
-      <h1><a href="/" id="title">SmolVid</a></h1>
-    </header>
+    <div id="home-page" class="hidden">
+      <header id="header">
+        <h1><a href="/" id="title">SmolVid</a></h1>
+      </header>
 
-    <section id="form-box" class="hidden">
-      <fieldset>
-        <label>
-          <p>Source URL:</p>
-          <input
-            id="source"
-            type="text"
-            name="Source"
-            autocomplete="off"
-            spellcheck="false"
-          />
-        </label>
-        <label>
-          <p>Title (optional):</p>
-          <input id="name" type="text" name="Source" autocomplete="off" />
-        </label>
-        <button id="load">LOAD</button>
-      </fieldset>
-      <p>
-        Provide a direct link to the video/stream file. The link will be encoded
-        in the site url, so you can bookmark and share the video.
-      </p>
-    </section>
+      <section id="form-box">
+        <fieldset>
+          <label>
+            <p>Source URL:</p>
+            <input
+              id="source"
+              type="text"
+              name="Source"
+              autocomplete="off"
+              spellcheck="false"
+            />
+          </label>
+          <label>
+            <p>Title (optional):</p>
+            <input id="name" type="text" name="Source" autocomplete="off" />
+          </label>
+          <button id="load">LOAD</button>
+        </fieldset>
+        <p>
+          Provide a direct link to the video/stream file. The link will be
+          encoded in the site url, so you can bookmark and share the video.
+        </p>
+        <p id="error" class="hidden">
+          Video cannot be loaded. Try a different source.
+        </p>
+      </section>
+    </div>
 
-    <section id="start-box" class="hidden">
-      <h2 id="video-title-big"></h2>
-      <fieldset>
-        <button id="play" title="PLAY"></button>
-      </fieldset>
-    </section>
+    <div id="player-page" class="hidden">
+      <section id="start-box" class="hidden">
+        <h2 id="video-title-big"></h2>
+        <fieldset>
+          <button id="play" title="PLAY"></button>
+        </fieldset>
+      </section>
 
-    <section id="player-box" class="hidden">
-      <video id="player" class="video-js"></video>
-    </section>
+      <section id="player-box">
+        <video id="player" class="video-js"></video>
+      </section>
+    </div>
 
     <script type="module" src="/src/main.ts"></script>
   </body>
