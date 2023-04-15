@@ -1,4 +1,4 @@
-const initDomElements = () => {
+const initInfoBox = () => {
   const $controlBar = document.querySelector(".vjs-control-bar");
 
   const $infoBox = document.createElement("section");
@@ -22,4 +22,4 @@ const initDomElements = () => {
   };
 };
 
-export default initDomElements;
+export default initInfoBox;
