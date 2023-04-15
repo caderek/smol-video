@@ -36,7 +36,7 @@ const loadVideo = async (
   options: { autoplay: boolean; updateHash: boolean }
 ) => {
   if (data === null) {
-    return;
+    return false;
   }
 
   try {
