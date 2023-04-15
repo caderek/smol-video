@@ -4,13 +4,17 @@ import videojs from "video.js";
 import HashStorage from "./hashStorage";
 
 const $playerBox = document.getElementById("player-box") as HTMLDivElement;
+const $startBox = document.getElementById("start-box") as HTMLDivElement;
 const $formBox = document.getElementById("form-box") as HTMLDivElement;
 const $player = document.getElementById("player") as HTMLVideoElement;
 const $load = document.getElementById("load") as HTMLButtonElement;
 const $source = document.getElementById("source") as HTMLInputElement;
 const $name = document.getElementById("name") as HTMLInputElement;
-const $title = document.getElementById("title") as HTMLAnchorElement;
-const $back = document.getElementById("back") as HTMLAnchorElement;
+const $header = document.getElementById("header") as HTMLDivElement;
+const $play = document.getElementById("play") as HTMLButtonElement;
+const $videoTitleBig = document.getElementById(
+  "video-title-big"
+) as HTMLDivElement;
 
 const PAGE_TITLE = "SmolVid";
 
@@ -21,6 +25,22 @@ const player = videojs($player, {
   controls: true,
   preload: "auto",
 });
+
+const $controlBar = document.querySelector(".vjs-control-bar");
+
+const $infoBox = document.createElement("section");
+$infoBox.classList.add("info-box");
+
+const $videoTitle = document.createElement("h2");
+
+const $back = document.createElement("a");
+$back.href = "/";
+$back.title = "Go back to the homepage";
+$back.classList.add("back");
+
+$infoBox.appendChild($videoTitle);
+$infoBox.appendChild($back);
+$controlBar?.appendChild($infoBox);
 
 const storage = {
   save() {
@@ -35,7 +55,7 @@ const storage = {
   },
 };
 
-const updateStorage = (ms: number = 5000) => {
+const updateStorage = (ms: number = 1000) => {
   storage.save();
   setTimeout(updateStorage, ms);
 };
@@ -85,13 +105,20 @@ const loadVideo = (
 
   if (data.title) {
     document.title = `${data.title} - ${PAGE_TITLE}`;
+    $videoTitle.innerText = data.title;
+    $videoTitleBig.classList.remove("hidden");
+    $videoTitleBig.innerText = data.title;
+  } else {
+    $videoTitleBig.classList.add("hidden");
   }
 
+  $header.classList.add("hidden");
   $formBox.classList.add("hidden");
   $playerBox.classList.remove("hidden");
   $back.classList.remove("hidden");
-  $title.classList.add("dim");
+  $infoBox.classList.remove("hidden");
 
+  // @todo if it is the end of video, start from beginning
   player.currentTime(storage.read());
   registerKeys();
   updateStorage();
@@ -101,7 +128,14 @@ const data = hashStorage.get();
 
 if (data) {
   loadVideo(data, { autoplay: false, updateHash: false });
+  $startBox.classList.remove("hidden");
+
+  $play.addEventListener("click", () => {
+    player.play();
+    $startBox.classList.add("hidden");
+  });
 } else {
+  $formBox.classList.remove("hidden");
   const loadFromForm = (e: Event) => {
     e.preventDefault();
 

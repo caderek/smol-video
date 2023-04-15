@@ -33,18 +33,17 @@ header {
 
 h1 {
   display: inline-block;
-  font-size: 1.5rem;
+  font-size: 2rem;
   padding: 1rem;
 }
 
 h1 a {
   text-decoration: none;
   color: #2395e0;
-  opacity: 0.7;
 }
 
-.dim {
-  opacity: 0.2;
+h1 a:hover {
+  color: #30a4f1;
 }
 
 h1 a:hover {
@@ -61,10 +60,48 @@ h1 a:hover {
   background-color: black;
 }
 
+#start-box {
+  position: absolute;
+  background-color: #000000aa;
+  color: #fff;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-content: center;
+}
+
+#start-box.hidden {
+  display: none;
+}
+
+#start-box h2 {
+  font-size: 2rem;
+  text-shadow: 0 0 0.5rem #000000aa;
+  text-align: center;
+  padding: 2rem 1rem;
+  width: 100%;
+}
+
+#play {
+  width: 96px;
+  aspect-ratio: 1;
+  background-color: transparent;
+  background-image: url(/play.svg);
+  background-size: contain;
+  opacity: 0.8;
+}
+
+#play:hover {
+  opacity: 1;
+}
+
 .back {
-  margin: 15px;
-  height: 30px;
-  width: 34px;
+  margin: 1rem;
+  height: 1.5rem;
+  width: 1.5rem;
   position: absolute;
   top: 0;
   right: 0;
@@ -73,7 +110,7 @@ h1 a:hover {
   background-repeat: no-repeat;
   border: none;
   display: inline-block;
-  opacity: 0.2;
+  opacity: 0.8;
 }
 
 .back.hidden {
@@ -141,4 +178,54 @@ fieldset p {
   width: 100%;
   line-height: 1.2rem;
   text-align: center;
+}
+
+.vjs-control-bar {
+  background: none !important;
+}
+
+.vjs-control-bar::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 30vh;
+  width: 100%;
+  background: linear-gradient(transparent, #000000ee);
+}
+
+.vjs-control-bar::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 30vh;
+  width: 100%;
+  background: linear-gradient(#000000ee, transparent);
+  color: #fff;
+  padding: 1rem;
+}
+
+.info-box {
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 1rem;
+  color: #fff;
+  z-index: 2;
+  width: 100%;
+}
+
+.info-box h2 {
+  color: #fff;
+  font-family: system-ui;
+  font-size: 1.5rem;
+}
+
+.video-js {
+  font-size: 0.875rem !important;
+}
+
+.vjs-big-play-button {
+  display: none !important;
 }

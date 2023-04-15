@@ -7,12 +7,11 @@
     <title>SmolVid</title>
   </head>
   <body>
-    <header>
+    <header id="header">
       <h1><a href="/" id="title">SmolVid</a></h1>
-      <a href="/" id="back" class="back hidden" title="back"></a>
     </header>
 
-    <section id="form-box">
+    <section id="form-box" class="hidden">
       <fieldset>
         <label>
           <p>Source URL:</p>
@@ -34,6 +33,13 @@
         Provide a direct link to the video/stream file. The link will be encoded
         in the site url, so you can bookmark and share the video.
       </p>
+    </section>
+
+    <section id="start-box" class="hidden">
+      <h2 id="video-title-big"></h2>
+      <fieldset>
+        <button id="play" title="PLAY"></button>
+      </fieldset>
     </section>
 
     <section id="player-box" class="hidden">
