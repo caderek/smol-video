@@ -9,14 +9,11 @@ import initInfoBox from "./initInfoBox";
 
 const $homePage = document.getElementById("home-page") as HTMLDivElement;
 const $playerPage = document.getElementById("player-page") as HTMLDivElement;
-const $playerBox = document.getElementById("player-box") as HTMLDivElement;
 const $startBox = document.getElementById("start-box") as HTMLDivElement;
-const $formBox = document.getElementById("form-box") as HTMLDivElement;
 const $player = document.getElementById("player") as HTMLVideoElement;
 const $load = document.getElementById("load") as HTMLButtonElement;
 const $source = document.getElementById("source") as HTMLInputElement;
 const $name = document.getElementById("name") as HTMLInputElement;
-const $header = document.getElementById("header") as HTMLDivElement;
 const $play = document.getElementById("play") as HTMLButtonElement;
 const $titleBig = document.getElementById("video-title-big") as HTMLDivElement;
 const $error = document.getElementById("error") as HTMLParagraphElement;
@@ -29,7 +26,7 @@ const player = videojs($player, {
   preload: "auto",
 });
 
-const { $back, $infoBox, $videoTitle } = initInfoBox();
+const { $videoTitle } = initInfoBox();
 
 const hashStorage = new HashStorage();
 const storage = initStorage(player);
