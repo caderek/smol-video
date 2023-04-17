@@ -11,7 +11,7 @@ body {
 }
 
 body {
-  background-color: rgb(19, 17, 36);
+  background-color: rgb(9, 11, 15);
 }
 
 #home-page,
@@ -20,7 +20,7 @@ body {
   display: grid;
   place-content: center;
   overflow: hidden;
-  color: #9ec8e4;
+  color: #d4dffd;
   font-family: system-ui;
   font-size: 1rem;
 }
@@ -149,13 +149,13 @@ fieldset button {
 }
 
 fieldset input {
-  padding: 0.5rem;
+  padding: 0.75rem;
   width: 100%;
   margin-right: 0.2rem;
   margin-bottom: 2rem;
-  background-color: rgb(13, 13, 26);
-  border: solid 1px rgb(46, 42, 82);
-  color: rgb(158, 153, 202);
+  background-color: rgb(15, 19, 26);
+  border: solid 1px rgb(32, 39, 53);
+  color: rgb(160, 186, 235);
   outline: none;
 }
 
@@ -244,4 +244,9 @@ fieldset p {
 
 #form-box p#error {
   color: rgb(250, 92, 92);
+}
+
+#error.hidden {
+  display: block;
+  visibility: hidden;
 }

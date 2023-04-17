@@ -39,11 +39,21 @@ const loadVideo = async (
     return false;
   }
 
+  let timeout;
+
   try {
     await loadSource(data.url, player);
   } catch (e) {
     $homePage.classList.remove("hidden");
     $error.classList.remove("hidden");
+
+    if (timeout) {
+      clearTimeout(timeout);
+    }
+
+    timeout = setTimeout(() => {
+      $error.classList.add("hidden");
+    }, 2000);
 
     return false;
   }
