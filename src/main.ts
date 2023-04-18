@@ -92,13 +92,6 @@ const main = async () => {
     if (!(await loadVideo(data, { autoplay: false, updateHash: false }))) {
       return;
     }
-
-    $startBox.classList.remove("hidden");
-
-    $play.addEventListener("click", () => {
-      player.play();
-      $startBox.classList.add("hidden");
-    });
   } else {
     $homePage.classList.remove("hidden");
     const loadFromForm = (e: Event) => {
@@ -110,7 +103,7 @@ const main = async () => {
       if (source) {
         loadVideo(
           { url: source, title: name },
-          { autoplay: true, updateHash: true }
+          { autoplay: false, updateHash: true }
         );
       }
     };
@@ -131,6 +124,13 @@ const main = async () => {
       }
     });
   }
+
+  $startBox.classList.remove("hidden");
+
+  $play.addEventListener("click", () => {
+    player.play();
+    $startBox.classList.add("hidden");
+  });
 };
 
 main();
