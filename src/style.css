@@ -49,8 +49,14 @@ h1 {
 }
 
 h1 a {
+  display: inline-block;
+  padding-left: 3rem;
   text-decoration: none;
   color: #2395e0;
+  background-image: url(/logo.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: left;
 }
 
 h1 a:hover {
