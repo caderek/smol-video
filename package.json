@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "base64-js": "^1.5.1",
+    "is-mobile": "^4.0.0",
     "pako": "^2.1.0",
     "video.js": "^8.0.4"
   }

@@ -1,11 +1,14 @@
 import "./style.css";
 import "../node_modules/video.js/dist/video-js.min.css";
 import videojs from "video.js";
+import isMobile from "is-mobile";
 import HashStorage from "./hashStorage";
 import registerKeys from "./registerKeys";
 import loadSource from "./loadSource";
 import initStorage from "./storage";
 import initInfoBox from "./initInfoBox";
+
+console.log(isMobile());
 
 const $homePage = document.getElementById("home-page") as HTMLDivElement;
 const $playerPage = document.getElementById("player-page") as HTMLDivElement;
@@ -24,6 +27,11 @@ const player = videojs($player, {
   fill: true,
   controls: true,
   preload: "auto",
+});
+
+// @ts-ignore
+player.on("stalled", () => {
+  console.log("Boom!");
 });
 
 const { $videoTitle } = initInfoBox();
@@ -77,7 +85,9 @@ const loadVideo = async (
   $playerPage.classList.remove("hidden");
 
   // @todo if it is the end of video, start from beginning
-  player.currentTime(storage.read());
+  if (!isMobile()) {
+    player.currentTime(storage.read());
+  }
 
   registerKeys(player);
   storage.update();
