@@ -260,3 +260,24 @@ fieldset p {
   display: block;
   visibility: hidden;
 }
+
+#filters {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 2;
+  padding: 2rem;
+  background-color: #000000;
+  max-width: 20rem;
+  height: 100%;
+}
+
+#filters input[type="range"] {
+  margin-top: 0.5rem;
+  padding: 0;
+}
+
+#filters button {
+  width: 6rem;
+  margin: 0.5rem;
+}

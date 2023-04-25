@@ -7,6 +7,7 @@ import registerKeys from "./registerKeys";
 import loadSource from "./loadSource";
 import initStorage from "./storage";
 import initInfoBox from "./initInfoBox";
+import handleFilters from "./handleFilters";
 
 console.log(isMobile());
 
@@ -14,6 +15,7 @@ const $homePage = document.getElementById("home-page") as HTMLDivElement;
 const $playerPage = document.getElementById("player-page") as HTMLDivElement;
 const $startBox = document.getElementById("start-box") as HTMLDivElement;
 const $player = document.getElementById("player") as HTMLVideoElement;
+const $filters = document.getElementById("filters") as HTMLDivElement;
 const $load = document.getElementById("load") as HTMLButtonElement;
 const $source = document.getElementById("source") as HTMLInputElement;
 const $name = document.getElementById("name") as HTMLInputElement;
@@ -29,10 +31,7 @@ const player = videojs($player, {
   preload: "auto",
 });
 
-// @ts-ignore
-player.on("stalled", () => {
-  console.log("Boom!");
-});
+handleFilters($filters, $player);
 
 const { $videoTitle } = initInfoBox();
 
@@ -89,7 +88,7 @@ const loadVideo = async (
     player.currentTime(storage.read());
   }
 
-  registerKeys(player);
+  registerKeys(player, $filters);
   storage.update();
 
   return true;

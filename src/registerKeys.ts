@@ -1,10 +1,13 @@
 import Player from "video.js/dist/types/player";
 
-const registerKeys = (player: Player) => {
+const registerKeys = (player: Player, $filters: HTMLDivElement) => {
   document.addEventListener("keydown", (e) => {
     switch (e.key) {
       case "m":
         player.muted(!player.muted());
+        return;
+      case "f":
+        $filters.classList.toggle("hidden");
         return;
       case "ArrowRight":
         player.currentTime(player.currentTime() + 10);
