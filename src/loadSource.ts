@@ -4,19 +4,18 @@ const loadSource = (url: string, player: Player): Promise<void> => {
   // @ts-ignore
   window.player = player;
   return new Promise((resolve, reject) => {
-    fetch(url, { method: "HEAD" })
+    fetch(url, { method: "HEAD", mode: "no-cors" })
       .then((res) => {
-        if (res.ok) {
+        if (res.ok || res.status === 0) {
+          player.src({
+            src: url,
+          });
           resolve();
         } else {
           reject();
         }
       })
       .catch(reject);
-
-    player.src({
-      src: url,
-    });
   });
 };
 
