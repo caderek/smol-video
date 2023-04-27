@@ -16,6 +16,7 @@
     "vite": "^4.2.0"
   },
   "dependencies": {
+    "a-color-picker": "^1.2.1",
     "base64-js": "^1.5.1",
     "is-mobile": "^4.0.0",
     "pako": "^2.1.0",

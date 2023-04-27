@@ -281,3 +281,24 @@ fieldset p {
   width: 6rem;
   margin: 0.5rem;
 }
+
+#filters select {
+  padding: 0.5rem;
+  width: 100%;
+  margin-bottom: 1.5rem;
+  margin-top: 1rem;
+  background-color: #000000;
+  color: #ffffff;
+  border: solid 1px #ffffff22;
+  font-size: 0.875rem;
+}
+
+#filters option {
+  padding: 0.5rem;
+  margin: 1rem;
+}
+
+#picker {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
