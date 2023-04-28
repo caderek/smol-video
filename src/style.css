@@ -212,7 +212,7 @@ fieldset p {
   left: 0;
   height: 30vh;
   width: 100%;
-  background: linear-gradient(transparent, #000000ee);
+  background: linear-gradient(transparent, rgb(0 0 0 / 0.75));
 }
 
 .vjs-control-bar::after {
@@ -222,7 +222,7 @@ fieldset p {
   left: 0;
   height: 30vh;
   width: 100%;
-  background: linear-gradient(#000000ee, transparent);
+  background: linear-gradient(rgb(0 0 0 / 0.75), transparent);
   color: #fff;
   padding: 1rem;
 }
