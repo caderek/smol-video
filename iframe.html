@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        border: none;
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+
+      body {
+        display: grid;
+        place-content: center;
+        background-color: black;
+      }
+
+      iframe {
+        width: calc(100svw - 2rem);
+        height: calc(100svh - 2rem);
+      }
+    </style>
+  </head>
+  <body>
+    <iframe
+      allowfullscreen="true"
+      scrolling="no"
+      frameborder="0"
+      src=""
+    ></iframe>
+
+    <script>
+      if (location.hash.length > 1) {
+        console.log(location.hash);
+        document.querySelector("iframe").src = location.hash.slice(1);
+      }
+    </script>
+  </body>
+</html>
