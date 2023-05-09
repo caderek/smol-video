@@ -32,6 +32,10 @@
     <video id="video" controls></video>
 
     <script>
+      if (!Hls.isSupported()) {
+        alert("Hls not supported!");
+      }
+
       if (Hls.isSupported()) {
         const src = location.hash.slice(1);
         var video = document.getElementById("video");
