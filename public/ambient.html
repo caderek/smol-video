@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      html,
+      body {
+        height: 100%;
+      }
+
+      body {
+        display: grid;
+        place-content: center;
+        background-color: black;
+      }
+
+      .player {
+        width: 960px;
+        position: relative;
+        font-size: 0;
+        padding: 0;
+        margin: 0;
+      }
+
+      video {
+        width: 100%;
+        position: relative;
+        z-index: 1;
+        outline: solid 16px black;
+      }
+
+      .ambient {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-size: contain;
+        z-index: 0;
+        filter: blur(64px);
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="player">
+      <div id="ambient" class="ambient"></div>
+      <video
+        src="Sprite_Fright-Blender_Open_Movie.webm"
+        id="player"
+        controls
+      ></video>
+    </section>
+
+    <script>
+      const $player = document.getElementById("player");
+      const $ambient = document.getElementById("ambient");
+
+      const $canvas = document.createElement("canvas");
+      const ctx = $canvas.getContext("2d");
+
+      $player.addEventListener("playing", () => {
+        const w = $player.videoWidth;
+        const h = $player.videoHeight;
+        const ratio = w / h;
+        const pw = 960;
+        const ph = Math.round(960 / ratio);
+
+        $canvas.width = pw;
+        $canvas.height = ph;
+
+        const go = () => {
+          ctx.drawImage(player, 0, 0, w, h, 0, 0, pw, ph);
+          const imgURL = $canvas.toDataURL();
+
+          $ambient.style.backgroundImage = `url(${imgURL})`;
+
+          setTimeout(go, 20);
+        };
+
+        go();
+      });
+    </script>
+  </body>
+</html>
